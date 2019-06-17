@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include <Modules/AppStateModule.h>
+#include <Modules/ThemingModule.h>
 #include <IReactInstance.h>
 
 #include <winrt/Windows.ApplicationModel.Core.h>
@@ -23,9 +23,9 @@ namespace react {
       const char* getHighContrast() override;
 
     private:
-      void EnteredLightMode(winrt::Windows::Foundation::IInspectable const& /*sender*/, winrt::Windows::ApplicationModel::VisualStateChangedEventArgs const& /*e*/);
-      void EnteredDarkMode(winrt::Windows::Foundation::IInspectable const& /*sender*/, winrt::Windows::ApplicationModel::VisualStateChangedEventArgs const& /*e*/);
-      void HighContrastChanged(winrt::Windows::Foundation::IInspectable const& /*sender*/, winrt::Windows::ApplicationModel::VisualStateChangedEventArgs const& /*e*/);
+      void EnteredLightMode(winrt::Windows::Foundation::IInspectable const& /*sender*/, winrt::Windows::UI::Xaml::VisualStateChangedEventArgs const& /*e*/);
+      void EnteredDarkMode(winrt::Windows::Foundation::IInspectable const& /*sender*/, winrt::Windows::UI::Xaml::VisualStateChangedEventArgs const& /*e*/);
+      void HighContrastChanged(winrt::Windows::Foundation::IInspectable const& /*sender*/, winrt::Windows::UI::Xaml::VisualStateChangedEventArgs const& /*e*/);
 
       void fireThemeEvent(const char* newTheme);
       void fireHighContrastEvent(const char* newHighContrastState);

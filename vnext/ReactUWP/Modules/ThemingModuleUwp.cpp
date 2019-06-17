@@ -23,7 +23,6 @@ namespace react {
       m_enteredLightModeRevoker = winrt::Windows::UI::Xaml::Application::Current().EnteredBackground(winrt::auto_revoke, { this, &Theming::EnteredLightMode });
       m_enteredDarkModeRevoker = winrt::Windows::UI::Xaml::Application::Current().LeavingBackground(winrt::auto_revoke, { this, &Theming::EnteredDarkMode });
       m_highContrastChangedRevoker = winrt::Windows::UI::Xaml::Application::Current().EnteredBackground(winrt::auto_revoke, { this, &Theming::HighContrastActivated });
-      m_highContrastDeactivatedRevoker = winrt::Windows::UI::Xaml::Application::Current().LeavingBackground(winrt::auto_revoke, { this, &Theming::HighContrastDeactivated });
     }
     }
 

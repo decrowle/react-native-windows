@@ -46,6 +46,7 @@
 // Modules
 #include <AsyncStorageModule.h>
 #include <Modules/AppStateModuleUwp.h>
+#include <Modules/ThemingModuleUwp.h>
 #include <Modules/ClipboardModule.h>
 #include <Modules/DeviceInfoModule.h>
 #include <ReactUWP/Modules/I18nModule.h>

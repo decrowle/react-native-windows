@@ -19,9 +19,6 @@ namespace facebook {
 
       virtual const char* getTheme();
 
-      HighContrast();
-      virtual ~HighContrast();
-
       virtual const char* getHighContrast();
     };
 
