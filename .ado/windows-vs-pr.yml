@@ -51,6 +51,13 @@ jobs:
         persistCredentials: false # set to 'true' to leave the OAuth token in the Git config after the initial fetch
 
       - task: CmdLine@2
+        displayName: Modify package.json to use unforked RN
+        inputs:
+          script: node scripts/modifyDevDepToUseUnforkedRN.js
+          workingDirectory: vnext
+        condition: and(succeeded(), eq(variables['UseRNFork'], 'false'))
+
+      - task: CmdLine@2
         displayName: yarn install (Using microsoft/react-native)
         inputs:
           script: yarn install --frozen-lockfile
@@ -65,7 +72,6 @@ jobs:
         inputs:
           script: yarn install
           workingDirectory: vnext
-        env: { UseRNFork: 'false' }
         condition: and(succeeded(), eq(variables['UseRNFork'], 'false'))
 
       - template: templates/stop-packagers.yml
@@ -345,3 +351,27 @@ jobs:
           versionSpec: '>=4.6.0' 
 
       - template: templates/prep-and-pack-nuget.yml
+
+  - job: RNWFormatting
+    displayName: Verify native code formatting
+    pool:
+      vmImage: vs2017-win2016
+    steps:
+      - checkout: self # self represents the repo where the initial Pipelines YAML file was found
+        clean: true # whether to fetch clean each time
+        fetchDepth: 2 # the depth of commits to ask Git to fetch
+        lfs: false # whether to download Git-LFS files
+        submodules: false # set to 'true' for a single level of submodules or 'recursive' to get submodules of submodules
+        persistCredentials: false # set to 'true' to leave the OAuth token in the Git config after the initial fetch
+
+      - task: CmdLine@2
+        displayName: yarn install
+        inputs:
+          script: yarn install --frozen-lockfile
+          workingDirectory: vnext
+
+      - task: CmdLine@2
+        displayName: yarn format:verify
+        inputs:
+          script: yarn format:verify
+          workingDirectory: vnext

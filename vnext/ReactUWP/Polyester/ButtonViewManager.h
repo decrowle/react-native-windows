@@ -5,6 +5,10 @@
 
 #include "ContentControlViewManager.h"
 
+namespace winrt {
+using Button = winrt::Windows::UI::Xaml::Controls::Button;
+}
+
 namespace react {
 namespace uwp {
 namespace polyester {
@@ -18,6 +22,7 @@ class ButtonViewManager : public ContentControlViewManager {
   const char *GetName() const override;
   folly::dynamic GetNativeProps() const override;
   folly::dynamic GetExportedCustomDirectEventTypeConstants() const override;
+  facebook::react::ShadowNode *createShadow() const override;
 
   void UpdateProperties(
       ShadowNodeBase *nodeToUpdate,

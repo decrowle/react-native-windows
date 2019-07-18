@@ -6,6 +6,10 @@
 #include <Views/FrameworkElementViewManager.h>
 #include <Views/ViewPanel.h>
 
+namespace winrt {
+using ContentControl = winrt::Windows::UI::Xaml::Controls::ContentControl;
+}
+
 namespace react {
 namespace uwp {
 
@@ -42,14 +46,6 @@ class ViewViewManager : public FrameworkElementViewManager {
       ViewShadowNode *viewShadowNode,
       winrt::react::uwp::ViewPanel &pPanel,
       bool useControl);
-
- private:
-  void DispatchEvent(
-      int64_t viewTag,
-      std::string eventName,
-      folly::dynamic &&eventData);
-
-  XamlView CreateViewControl(int64_t tag);
 };
 
 } // namespace uwp
